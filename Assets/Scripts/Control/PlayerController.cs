@@ -1,7 +1,10 @@
 using UnityEngine;
+using RPG.Movement;
 
 
-public class PlayerController : MonoBehaviour {
+namespace RPG.Control
+{
+    public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (Input.GetMouseButton(0))
@@ -19,4 +22,5 @@ public class PlayerController : MonoBehaviour {
         }
         // playerAgent.destination = target.position;
     }
+}    
 }
