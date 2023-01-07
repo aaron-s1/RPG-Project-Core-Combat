@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RPG.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,6 +23,14 @@ namespace RPG.Movement
 
         void Update() =>
             UpdateAnimator();
+
+        
+        // Moves but first stops attacking.
+        public void StartMoveAction(Vector3 destination)
+        {
+            GetComponent<Fighter>().CancelAttack();
+            MoveTo(destination);
+        }
         
 
         public void MoveTo(Vector3 destination)
