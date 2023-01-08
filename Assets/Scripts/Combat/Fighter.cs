@@ -4,7 +4,7 @@ using RPG.Core;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
 
@@ -18,14 +18,14 @@ namespace RPG.Combat
 
         void MoveToAttackTarget()
         {
-            if (target == null)
-                return;
+            // if (target == null)
+            //     return;
 
-            if (!GetIsInRange())
-                GetComponent<Mover>().MoveTo(target.position);
+            // if (!GetIsInRange())
+            //     GetComponent<Mover>().MoveTo(target.position);
 
-            else
-                GetComponent<Mover>().StopMovement();
+            // else
+            //     GetComponent<Mover>().Cancel();
         }
 
 
@@ -40,7 +40,7 @@ namespace RPG.Combat
         }
 
 
-        public void CancelAttack() =>
+        public void Cancel() =>
             target = null;
     }    
 }
