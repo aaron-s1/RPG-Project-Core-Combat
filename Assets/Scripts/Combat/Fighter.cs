@@ -10,26 +10,39 @@ namespace RPG.Combat
 
         Transform target;
 
-        void Update()
-        {
+
+        void Update() =>
             MoveToAttackTarget();
-        }
 
 
         void MoveToAttackTarget()
         {
-            // if (target == null)
-            //     return;
+            if (target == null)
+                return;
 
-            // if (!GetIsInRange())
-            //     GetComponent<Mover>().MoveTo(target.position);
+            if (!GetIsInRange()) 
+                GetComponent<Mover>().MoveTo(target.position);                
 
-            // else
-            //     GetComponent<Mover>().Cancel();
+            else
+            {
+                GetComponent<Mover>().Cancel();
+                AttackBehavior();
+            }
         }
 
 
-        bool GetIsInRange() {
+        void AttackBehavior() {
+            GetComponent<Animator>().SetTrigger("attack");
+        }
+
+
+        // Called from Animator.
+        void Hit() {
+
+        }
+
+
+        public bool GetIsInRange() {
             return Vector3.Distance(transform.position, target.position) < weaponRange;
         }
 

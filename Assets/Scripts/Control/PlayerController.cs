@@ -6,6 +6,8 @@ namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour {
 
+
+
         void Update() {
             if (InteractWithCombat())
                 return;
