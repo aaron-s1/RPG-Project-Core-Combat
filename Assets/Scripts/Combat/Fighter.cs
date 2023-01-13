@@ -50,6 +50,7 @@ namespace RPG.Combat
 
             if (timeSinceLastAttack > timeBetweenAttacks) {
                 // This triggers Hit() event.
+                transform.LookAt(target.transform.position);
                 animator.SetTrigger("attack");
                 timeSinceLastAttack = 0;
             }
