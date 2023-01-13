@@ -64,6 +64,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 875565323, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -78,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.99
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalRotation.w
@@ -116,7 +120,12 @@ PrefabInstance:
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4426795520571488259, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: healthPoints
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 875565323, guid: fe628672122d6324e951de6ed19234da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe628672122d6324e951de6ed19234da, type: 3}
 --- !u!4 &4655702894701637585 stripped
 Transform:
@@ -128,18 +137,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1912183673629923609, guid: fe628672122d6324e951de6ed19234da, type: 3}
   m_PrefabInstance: {fileID: 6491114186829051588}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6245227669852212522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4655702894701637597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7b62c1849a91664082aaa0828092421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &110813150249654967
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -154,3 +151,15 @@ CapsuleCollider:
   m_Height: 2.0059717
   m_Direction: 1
   m_Center: {x: 0, y: 0.9099957, z: 0}
+--- !u!114 &6245227669852212522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655702894701637597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b62c1849a91664082aaa0828092421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
