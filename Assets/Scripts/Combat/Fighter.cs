@@ -20,8 +20,8 @@ namespace RPG.Combat
         void Awake() =>
             animator = GetComponent<Animator>();
 
-        void Update() {
-                        
+        void Update()
+        {                        
             timeSinceLastAttack += Time.deltaTime;
 
             MoveToAttackTarget();
@@ -30,9 +30,7 @@ namespace RPG.Combat
 
         void MoveToAttackTarget()
         {
-            if (target == null)
-                return;
-            if (target.IsDead())
+            if (target == null || target.IsDead())
                 return;
 
             if (!GetIsInRange()) 
@@ -46,8 +44,8 @@ namespace RPG.Combat
         }
 
 
-        void AttackBehavior() {
-
+        void AttackBehavior()
+        {
             if (timeSinceLastAttack > timeBetweenAttacks) {
                 // This triggers Hit() event.
                 transform.LookAt(target.transform.position);
@@ -59,7 +57,6 @@ namespace RPG.Combat
 
         // Animation event.
         void Hit() {
-            // Health healthComponent = target.GetComponent<Health>();
             target.TakeDamage(weaponDamage);
         }
 

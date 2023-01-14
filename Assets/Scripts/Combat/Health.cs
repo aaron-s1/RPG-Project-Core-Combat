@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 
 namespace RPG.Combat 
@@ -7,9 +8,16 @@ namespace RPG.Combat
     {
         [SerializeField] float healthPoints = 100f;
 
+        Collider collider;
+
         bool isDead = false;
 
-        public bool IsDead()
+
+        void Awake() =>
+            collider = GetComponent<Collider>();
+
+
+        public bool IsDead() 
         {
             return isDead;
         }
@@ -27,6 +35,8 @@ namespace RPG.Combat
             if (!isDead)
             {
                 isDead = true;
+                collider.enabled = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
                 GetComponent<Animator>().SetTrigger("die");
             }
         }
