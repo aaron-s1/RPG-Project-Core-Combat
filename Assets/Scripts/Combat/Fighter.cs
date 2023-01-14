@@ -17,13 +17,14 @@ namespace RPG.Combat
 
         float timeSinceLastAttack = 0;
 
+
         void Awake() =>
             animator = GetComponent<Animator>();
+
 
         void Update()
         {                        
             timeSinceLastAttack += Time.deltaTime;
-
             MoveToAttackTarget();
         }
 
@@ -46,35 +47,60 @@ namespace RPG.Combat
 
         void AttackBehavior()
         {
-            if (timeSinceLastAttack > timeBetweenAttacks) {
+            transform.LookAt(target.transform.position);
+
+            if (timeSinceLastAttack > timeBetweenAttacks)
+            {
                 // This triggers Hit() event.
-                transform.LookAt(target.transform.position);
-                animator.SetTrigger("attack");
+                TriggerAttack();
                 timeSinceLastAttack = 0;
             }
         }
 
 
-        // Animation event.
-        void Hit() {
-            target.TakeDamage(weaponDamage);
+        #region Attacking: Toggle Animator triggers.
+
+        void TriggerAttack()
+        {
+            animator.ResetTrigger("stopAttack");
+            animator.SetTrigger("attack");
+        }
+        
+        void StopAttack()
+        {
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stopAttack");
         }
 
-
-        public bool GetIsInRange() {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+        public void Cancel()
+        {
+            StopAttack();
+            target = null;
         }
 
+        #endregion
 
+
+        // Played via Animation event.
         public void AttackTarget(CombatTarget combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
 
 
-        public void Cancel() {
-            animator.SetTrigger("stopAttack");  
-            target = null;
+        void Hit()
+        {
+            if (target == null)
+                return;
+                
+            target.TakeDamage(weaponDamage);
         }
+
+
+        public bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+        }        
+
     }    
 }
