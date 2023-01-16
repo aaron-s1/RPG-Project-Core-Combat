@@ -11,6 +11,7 @@ namespace RPG.Movement
         [SerializeField] Transform target;
         
         NavMeshAgent navMeshAgent;
+        Health health;
         Animator playerAnim;
 
         Ray lastRay;
@@ -18,11 +19,17 @@ namespace RPG.Movement
         void Start() {
             navMeshAgent = GetComponent<NavMeshAgent>();
             playerAnim = GetComponent<Animator>();
+            health = GetComponent<Health>();
         }
 
 
-        void Update() =>
+        void Update()
+        {
+            if (health.IsDead() && navMeshAgent.enabled)
+                navMeshAgent.enabled = false;
+            
             UpdateAnimator();
+        }
 
         
         // Moves but first stops attacking.
@@ -37,15 +44,14 @@ namespace RPG.Movement
         {
             GetComponent<NavMeshAgent>().destination = destination;
             navMeshAgent.isStopped = false;
-            // playerAgent.destination = destination;
         }
 
-        public void Cancel()
-        {
-            navMeshAgent.isStopped = true;
+
+        public void Cancel() {
+            if (navMeshAgent.enabled)
+                navMeshAgent.isStopped = true;
         }
 
-        
 
         void UpdateAnimator()
         {

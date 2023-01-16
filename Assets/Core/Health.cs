@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-namespace RPG.Combat 
+namespace RPG.Core 
 {
     public class Health : MonoBehaviour
     {
@@ -13,15 +13,9 @@ namespace RPG.Combat
         bool isDead = false;
 
 
-        void Awake() {
+        void Awake() =>
             collider = GetComponent<Collider>();
-        }
 
-
-        public bool IsDead() 
-        {
-            return isDead;
-        }
 
         public void TakeDamage(float damage = 0)
         {
@@ -31,18 +25,26 @@ namespace RPG.Combat
                 Die();
         }
 
-        private void Die()
+
+        void Die()
         {
             if (!isDead)
             {
+                isDead = true;
+
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
                 if (collider != null)
                     collider.enabled = false;
-                    
-                isDead = true;                
-                gameObject.GetComponent<NavMeshAgent>().enabled = false;                
+
                 GetComponent<Animator>().SetTrigger("die");
 
+                GetComponent<ActionScheduler>().CancelCurrentAction();
             }
         }
+
+
+        public bool IsDead() => 
+            isDead;
     }
 }

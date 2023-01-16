@@ -1,14 +1,22 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour {
 
 
+        Health health;
+
+        void Start() =>
+            health = GetComponent<Health>();
 
         void Update() {
+            if (health.IsDead())
+                return;
+
             if (InteractWithCombat())
                 return;
 
@@ -47,10 +55,8 @@ namespace RPG.Control
 
             if (hasHit)
             {
-                if (Input.GetMouseButton(0)) {
+                if (Input.GetMouseButton(0))
                     GetComponent<Mover>().StartMoveAction(hit.point);
-                    // GetComponent<Mover>().MoveTo(hit.point);
-                }
 
                 return true;
             }
@@ -60,8 +66,7 @@ namespace RPG.Control
 
 
 
-        static Ray GetMouseRay() {
-            return Camera.main.ScreenPointToRay(Input.mousePosition);
-        }
+        static Ray GetMouseRay() =>
+            Camera.main.ScreenPointToRay(Input.mousePosition);
     }
 }

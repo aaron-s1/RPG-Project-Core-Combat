@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
@@ -15,7 +16,7 @@ namespace RPG.Combat
 
         Health target;
 
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
 
 
         void Awake() =>
@@ -106,10 +107,7 @@ namespace RPG.Combat
         }
 
 
-        public bool GetIsInRange()
-        {
-            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
-        }        
-
-    }    
+        public bool GetIsInRange() =>
+            Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+    }
 }
