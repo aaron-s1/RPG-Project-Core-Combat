@@ -57,6 +57,15 @@ namespace RPG.Combat
             }
         }
 
+        public bool CanAttack(GameObject combatTarget)
+        {
+            if (combatTarget == null)
+                return false;
+
+            Health targetToTest = combatTarget.GetComponent<Health>();
+            return (targetToTest != null && !targetToTest.IsDead());
+        }
+
 
         #region Attacking: Toggle Animator triggers.
 
@@ -82,7 +91,7 @@ namespace RPG.Combat
 
 
         // Played via Animation event.
-        public void AttackTarget(CombatTarget combatTarget) {
+        public void Attack(GameObject combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
@@ -92,7 +101,7 @@ namespace RPG.Combat
         {
             if (target == null)
                 return;
-                
+
             target.TakeDamage(weaponDamage);
         }
 

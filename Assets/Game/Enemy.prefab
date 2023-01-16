@@ -68,6 +68,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 875565324, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: m_Speed
+      value: 2.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 875565324, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: m_Acceleration
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 875565324, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -151,6 +163,19 @@ CapsuleCollider:
   m_Height: 2.0059717
   m_Direction: 1
   m_Center: {x: 0, y: 0.9099957, z: 0}
+--- !u!114 &2479021978444049311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655702894701637597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613597b9fbf5dad4398d0334887af65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
 --- !u!114 &6245227669852212522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +188,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b62c1849a91664082aaa0828092421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8094517048221038499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655702894701637597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdead153eaa88ab42ab773465e57a6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}

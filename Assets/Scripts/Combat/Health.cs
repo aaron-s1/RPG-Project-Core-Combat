@@ -13,8 +13,9 @@ namespace RPG.Combat
         bool isDead = false;
 
 
-        void Awake() =>
+        void Awake() {
             collider = GetComponent<Collider>();
+        }
 
 
         public bool IsDead() 
@@ -34,10 +35,13 @@ namespace RPG.Combat
         {
             if (!isDead)
             {
-                isDead = true;
-                collider.enabled = false;
-                gameObject.GetComponent<NavMeshAgent>().enabled = false;
+                if (collider != null)
+                    collider.enabled = false;
+                    
+                isDead = true;                
+                gameObject.GetComponent<NavMeshAgent>().enabled = false;                
                 GetComponent<Animator>().SetTrigger("die");
+
             }
         }
     }
