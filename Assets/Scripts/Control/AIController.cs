@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
+using RPG.Movement;
 
 namespace RPG.Control
 {
@@ -12,13 +13,19 @@ namespace RPG.Control
 
         GameObject player;
         Health health;
+        Mover mover;
         Fighter fighter;
+
+        Vector3 guardPosition;
 
 
         void Start() {
             player = GameObject.FindWithTag("Player");
             health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
+            mover = GetComponent<Mover>();
+
+            guardPosition = transform.position;
         }
 
 
@@ -29,7 +36,9 @@ namespace RPG.Control
 
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
                 fighter.Attack(player);
-            else fighter.Cancel();
+
+            else
+                mover.StartMoveAction(guardPosition);
         }
 
 
