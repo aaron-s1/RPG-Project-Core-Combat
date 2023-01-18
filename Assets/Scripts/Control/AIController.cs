@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 
 namespace RPG.Control
 {
@@ -11,6 +12,8 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 5f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolerance = 1f;
 
         GameObject player;
         Health health;
@@ -20,6 +23,7 @@ namespace RPG.Control
         Vector3 guardPosition;
 
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        int currentWaypointIndex = 0;
 
 
         void Start() {
@@ -44,10 +48,10 @@ namespace RPG.Control
             }
 
             else if (timeSinceLastSawPlayer < suspicionTime)
-                SuspicionBehaviour();
+                SuspicionBehavior();
 
             else
-                GuardBehaviour();
+                PatrolBehavior();
 
 
             timeSinceLastSawPlayer += Time.deltaTime;
@@ -58,12 +62,42 @@ namespace RPG.Control
             fighter.Attack(player);
 
 
-        void SuspicionBehaviour() =>
+        void SuspicionBehavior() =>
             GetComponent<ActionScheduler>().CancelCurrentAction();
 
 
-        void GuardBehaviour() =>
-            mover.StartMoveAction(guardPosition);
+        #region ~ PATROL BEHAVIOR ~
+
+        void PatrolBehavior() {
+
+            Vector3 nextPosition = guardPosition;
+
+            if (patrolPath != null)
+            {
+                if (AtWaypoint())
+                    CycleWaypoint();
+
+                nextPosition = GetCurrentWaypoint();
+            }
+
+            mover.StartMoveAction(nextPosition);
+        }
+
+
+        bool AtWaypoint() {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToWaypoint < waypointTolerance;
+        }
+
+
+        void CycleWaypoint() =>
+            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+
+
+        Vector3 GetCurrentWaypoint() =>
+            patrolPath.GetWaypoint(currentWaypointIndex);
+
+        #endregion ~ PATROL BEHAVIOR ~
 
 
         bool InAttackRangeOfPlayer() {
