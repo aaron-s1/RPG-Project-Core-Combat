@@ -7,7 +7,6 @@ namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour {
 
-
         Health health;
 
         void Start() =>
