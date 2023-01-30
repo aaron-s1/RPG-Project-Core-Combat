@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,9 +12,15 @@ namespace RPG.SceneManagement
         {
             if (other.gameObject.tag == "Player")
             {
-                // print("portal");
-                SceneManager.LoadScene(sceneToLoadIndex);
+                StartCoroutine(Transition());
             }
+        }
+
+        IEnumerator Transition()
+        {
+            DontDestroyOnLoad(gameObject);
+            yield return SceneManager.LoadSceneAsync(sceneToLoadIndex);
+            Destroy(gameObject);
         }
     }
 }
