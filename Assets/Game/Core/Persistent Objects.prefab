@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saving
       objectReference: {fileID: 0}
+    - target: {fileID: 4223390783873943691, guid: 6a3eb4142f1c3f24ab7554c0d654cc1b, type: 3}
+      propertyPath: fadeInTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a3eb4142f1c3f24ab7554c0d654cc1b, type: 3}
 --- !u!4 &7245870837599789226 stripped

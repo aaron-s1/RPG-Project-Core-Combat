@@ -66,7 +66,9 @@ namespace RPG.Saving
         void CaptureState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
+            }
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
         }

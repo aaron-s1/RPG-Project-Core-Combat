@@ -49,6 +49,8 @@ namespace RPG.SceneManagement
             Portal otherPortal = GetOtherPortal();
             UpdatePlayerPosition(otherPortal);
 
+            wrapper.Save();
+
             yield return new WaitForSeconds(fadeWaitTime);
             yield return fader.FadeIn(fadeInTime);
 
