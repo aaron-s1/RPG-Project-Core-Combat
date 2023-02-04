@@ -18,8 +18,12 @@ namespace RPG.Core
             collider = GetComponent<Collider>();
 
 
-        public void TakeDamage(float damage = 0) =>
+        public void TakeDamage(float damage = 0) {
             healthPoints = Mathf.Max(healthPoints -= damage, 0);
+            
+            if (healthPoints == 0)
+                Die();            
+        }
 
 
         void Die()

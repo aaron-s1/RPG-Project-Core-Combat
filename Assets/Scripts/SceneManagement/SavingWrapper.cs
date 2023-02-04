@@ -19,11 +19,11 @@ namespace RPG.SceneManagement
                 Save();
         }
 
-        void Save() =>
+        public void Save() =>
             GetComponent<SavingSystem>().Save(defaultSaveFile);
 
         // call to loading systems
-        void Load() =>
+        public void Load() =>
             GetComponent<SavingSystem>().Load(defaultSaveFile);
     }
 }
