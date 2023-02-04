@@ -15,10 +15,10 @@ namespace RPG.Saving
         {
             Dictionary<string, object> state = LoadFile(saveFile);
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
+
             if (state.ContainsKey("lastSceneBuildIndex"))
-            {
                 buildIndex = (int)state["lastSceneBuildIndex"];
-            }
+
             yield return SceneManager.LoadSceneAsync(buildIndex);
             RestoreState(state);
         }
@@ -30,23 +30,21 @@ namespace RPG.Saving
             SaveFile(saveFile, state);
         }
 
-        public void Load(string saveFile)
-        {
+
+        public void Load(string saveFile) =>
             RestoreState(LoadFile(saveFile));
-        }
 
-        public void Delete(string saveFile)
-        {
+        void Delete(string saveFile) =>
             File.Delete(GetPathFromSaveFile(saveFile));
-        }
 
-        private Dictionary<string, object> LoadFile(string saveFile)
+
+        Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
+
             if (!File.Exists(path))
-            {
                 return new Dictionary<string, object>();
-            }
+
             using (FileStream stream = File.Open(path, FileMode.Open))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -54,7 +52,7 @@ namespace RPG.Saving
             }
         }
 
-        private void SaveFile(string saveFile, object state)
+        void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile);
             print("Saving to " + path);
@@ -65,31 +63,25 @@ namespace RPG.Saving
             }
         }
 
-        private void CaptureState(Dictionary<string, object> state)
+        void CaptureState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
-            {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
-            }
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
         }
 
-        private void RestoreState(Dictionary<string, object> state)
+        void RestoreState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 string id = saveable.GetUniqueIdentifier();
                 if (state.ContainsKey(id))
-                {
                     saveable.RestoreState(state[id]);
-                }
             }
         }
 
-        private string GetPathFromSaveFile(string saveFile)
-        {
-            return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
-        }
+        string GetPathFromSaveFile(string saveFile) =>
+            Path.Combine(Application.persistentDataPath, saveFile + ".sav");
     }
 }
