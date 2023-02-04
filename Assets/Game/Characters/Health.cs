@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Saving;
 
 
 namespace RPG.Core 
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float healthPoints = 100f;
 
@@ -17,13 +18,8 @@ namespace RPG.Core
             collider = GetComponent<Collider>();
 
 
-        public void TakeDamage(float damage = 0)
-        {
+        public void TakeDamage(float damage = 0) =>
             healthPoints = Mathf.Max(healthPoints -= damage, 0);
-
-            if (healthPoints == 0)
-                Die();
-        }
 
 
         void Die()
@@ -46,5 +42,20 @@ namespace RPG.Core
 
         public bool IsDead() => 
             isDead;
+
+
+        #region Saving.
+
+        public object CaptureState() =>
+            healthPoints;
+
+        public void RestoreState(object state) {
+            healthPoints = (float)state;
+
+            if (healthPoints == 0)
+                Die();
+        }
+
+        #endregion
     }
 }
