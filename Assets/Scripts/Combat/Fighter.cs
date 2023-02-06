@@ -12,6 +12,9 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
         [SerializeField] float timeBetweenAttacks = 1f;
 
+        [SerializeField] GameObject weaponPrefab = null;
+        [SerializeField] Transform handTransform = null;
+
         Animator animator;
 
         Health target;
@@ -19,9 +22,10 @@ namespace RPG.Combat
         float timeSinceLastAttack = Mathf.Infinity;
 
 
-        void Awake() =>
+        void Start() {
             animator = GetComponent<Animator>();
-
+            SpawnWeapon();
+        }
 
         void Update()
         {                        
@@ -29,6 +33,8 @@ namespace RPG.Combat
             MoveToAttackTarget();
         }
 
+        void SpawnWeapon() =>
+            Instantiate(weaponPrefab, handTransform);
 
         void MoveToAttackTarget()
         {
@@ -91,6 +97,7 @@ namespace RPG.Combat
 
         #endregion
 
+        
 
         // Played via Animation event.
         public void Attack(GameObject combatTarget) {

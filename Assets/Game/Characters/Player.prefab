@@ -63,8 +63,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
+    - target: {fileID: 2911083305450959740, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &2247262112865700467 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+  m_PrefabInstance: {fileID: 2247262112865502199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4802000601180849494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.09
+      value: 36.04
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -90,7 +99,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.57
+      value: 16.18
       objectReference: {fileID: 0}
     - target: {fileID: 1912183673629923605, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: m_LocalRotation.w
@@ -130,8 +139,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5366249771538581010, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: uniqueIdentifier
-      value: player
+      value: 8519a5c4-466d-41b9-a9de-16b741035a49
       objectReference: {fileID: 0}
+    - target: {fileID: 6858049901061386273, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 727444318381319726, guid: 0d8602ce8489e3844ac86d0f1931a70c, type: 3}
+    - target: {fileID: 6858049901061386273, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 2247262112865700467}
     m_RemovedComponents:
     - {fileID: 4426795520571488259, guid: fe628672122d6324e951de6ed19234da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe628672122d6324e951de6ed19234da, type: 3}

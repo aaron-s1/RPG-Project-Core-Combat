@@ -83,7 +83,7 @@ namespace RPG.Movement
 
             GetComponent<NavMeshAgent>().enabled = false;
             transform.position = ((SerializableVector3)data["position"]).ToVector();
-            transform.eulerAngles = ((SerializableVector3)data["rotation    "]).ToVector();
+            transform.eulerAngles = ((SerializableVector3)data["rotation"]).ToVector();
             GetComponent<NavMeshAgent>().enabled = true;
         }
         #endregion
