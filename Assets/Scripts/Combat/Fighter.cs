@@ -15,6 +15,10 @@ namespace RPG.Combat
         [SerializeField] GameObject weaponPrefab = null;
         [SerializeField] Transform handTransform = null;
 
+        // [SerializeField] RuntimeAnimatorController controller;
+        [SerializeField] AnimatorOverrideController weaponOverride = null;
+
+
         Animator animator;
 
         Health target;
@@ -24,7 +28,12 @@ namespace RPG.Combat
 
         void Start() {
             animator = GetComponent<Animator>();
-            SpawnWeapon();
+
+            // var animController = animator.GetComponent<RuntimeAnimatorController>();
+            // animController = controller;
+
+            if (gameObject.tag == "Player")
+                SpawnWeapon();
         }
 
         void Update()
@@ -33,8 +42,10 @@ namespace RPG.Combat
             MoveToAttackTarget();
         }
 
-        void SpawnWeapon() =>
+        void SpawnWeapon() {
+            animator.runtimeAnimatorController = weaponOverride;
             Instantiate(weaponPrefab, handTransform);
+        }
 
         void MoveToAttackTarget()
         {
