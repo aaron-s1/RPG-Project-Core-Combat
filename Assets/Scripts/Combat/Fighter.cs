@@ -105,19 +105,26 @@ namespace RPG.Combat
         
 
         // Played via Animation event.
-        public void Attack(GameObject combatTarget) {
+        public void Hit(GameObject combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
 
 
+        // Played via Animation event.
         void Hit()
         {
             if (target == null)
                 return;
 
-            target.TakeDamage(currentWeapon.GetDamage());
+            if (currentWeapon.HasProjectile())
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            else
+                target.TakeDamage(currentWeapon.GetDamage());
         }
+
+        void Shoot() => 
+            Hit();
 
 
         public bool GetIsInRange() =>

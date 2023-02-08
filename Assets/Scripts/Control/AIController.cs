@@ -70,7 +70,7 @@ namespace RPG.Control
 
         void AttackBehavior() {
             timeSinceLastSawPlayer = 0;
-            fighter.Attack(player);
+            fighter.Hit(player);
         }
 
 
