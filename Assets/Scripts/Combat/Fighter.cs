@@ -10,7 +10,8 @@ namespace RPG.Combat
     {
         
         [SerializeField] Weapon defaultWeapon = null;
-        [SerializeField] Transform handTransform = null;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
         [SerializeField] float timeBetweenAttacks = 1f;
 
         Weapon currentWeapon = null;
@@ -37,7 +38,7 @@ namespace RPG.Combat
 
         public void EquipWeapon(Weapon weapon) {
             currentWeapon = weapon;
-            weapon.Spawn(handTransform, animator);
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
 
         void MoveToAttackTarget()
