@@ -26,7 +26,7 @@ namespace RPG.Combat
         void Start() {
             animator = GetComponent<Animator>();
 
-            if (gameObject.tag == "Player")
+            if (defaultWeapon != null)
                 EquipWeapon(defaultWeapon);
         }
 
@@ -112,7 +112,7 @@ namespace RPG.Combat
 
 
         // Played via Animation event.
-        void Hit()
+        public void Hit()
         {
             if (target == null)
                 return;

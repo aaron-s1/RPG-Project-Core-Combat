@@ -47,13 +47,15 @@ namespace RPG.Combat
                                             GetHandTransform(rightHand, leftHand).position, 
                                             Quaternion.identity);
             
-            projectileInstance.SetTarget(target);
+            projectileInstance.SetTarget(target, weaponDamage);
         }
 
-        public float GetDamage() =>
-            weaponDamage;
+        public float GetDamage() {
+            return weaponDamage;
+        }
 
-        public float GetRange() =>
-            weaponRange;
+        public float GetRange() {
+            return weaponRange;
+        }
     }
 }

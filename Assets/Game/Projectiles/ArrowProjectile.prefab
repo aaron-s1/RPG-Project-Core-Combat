@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2025376491742281740}
   - component: {fileID: 4925567884236907111}
+  - component: {fileID: 5905398015179620649}
   m_Layer: 0
   m_Name: ArrowProjectile
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7037927884188108525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.147, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,6 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+--- !u!65 &5905398015179620649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037927884188108525}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12533396, y: 0.14852688, z: 0.7672024}
+  m_Center: {x: 0.0010602772, y: -0.013248235, z: 0.35980636}
 --- !u!1001 &4629873961826433394
 PrefabInstance:
   m_ObjectHideFlags: 0
