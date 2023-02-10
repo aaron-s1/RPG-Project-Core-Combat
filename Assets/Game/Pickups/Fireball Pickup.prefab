@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 6196004166370979259, guid: 790221dae8ebb824aadb185d69384d74, type: 3}
+      propertyPath: weaponPickup
+      value: 
+      objectReference: {fileID: 11400000, guid: 74c53a5270394be49be340a602f6871c, type: 2}
     - target: {fileID: 7777818254946336534, guid: 790221dae8ebb824aadb185d69384d74, type: 3}
       propertyPath: m_RootOrder
       value: 0

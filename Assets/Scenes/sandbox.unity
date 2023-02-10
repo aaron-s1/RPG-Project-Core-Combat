@@ -1101,6 +1101,10 @@ PrefabInstance:
       propertyPath: a_weapon
       value: 
       objectReference: {fileID: 11400000, guid: 74c53a5270394be49be340a602f6871c, type: 2}
+    - target: {fileID: 7831495571456673089, guid: 471b38423373d7a4491cf39647455b49, type: 3}
+      propertyPath: weaponPickup
+      value: 
+      objectReference: {fileID: 11400000, guid: 74c53a5270394be49be340a602f6871c, type: 2}
     - target: {fileID: 8694131648779865749, guid: 471b38423373d7a4491cf39647455b49, type: 3}
       propertyPath: m_Name
       value: Fireball Pickup
@@ -1676,6 +1680,10 @@ PrefabInstance:
     - target: {fileID: 1183793911913885910, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
       propertyPath: uniqueIdentifier
       value: 683d9af9-4afe-403c-b008-6c998bbe6efc
+      objectReference: {fileID: 0}
+    - target: {fileID: 2479021978444049311, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2479021978444049311, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
       propertyPath: patrolPath
