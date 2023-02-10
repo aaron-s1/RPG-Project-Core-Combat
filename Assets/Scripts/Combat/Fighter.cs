@@ -74,8 +74,9 @@ namespace RPG.Combat
             if (combatTarget == null)
                 return false;
 
-            Health targetToTest = combatTarget.GetComponent<Health>();
-            return (targetToTest != null && !targetToTest.IsDead());
+            Health targetHealth = combatTarget.GetComponent<Health>();
+
+            return (targetHealth != null && !targetHealth.IsDead());
         }
 
 
@@ -114,8 +115,12 @@ namespace RPG.Combat
         // Played via Animation event.
         public void Hit()
         {
+            // target = GetComponent<Health>();
+            // target = combatTarget.GetComponent<Health>();
+
             if (target == null)
                 return;
+            
 
             if (currentWeapon.HasProjectile())
                 currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
