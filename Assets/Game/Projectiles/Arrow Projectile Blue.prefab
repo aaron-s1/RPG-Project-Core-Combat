@@ -71,9 +71,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4925567884236907111, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 3034801534690656168, guid: 771f2680126d5b4438a754c523c62386, type: 3}
     - target: {fileID: 7037927884188108525, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
       propertyPath: m_Name
-      value: ArrowProjectile Blue
+      value: Arrow Projectile Blue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
