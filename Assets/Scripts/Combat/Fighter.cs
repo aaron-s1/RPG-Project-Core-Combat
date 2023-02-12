@@ -9,10 +9,11 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         
-        [SerializeField] Weapon defaultWeapon = null;
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] string defaultWeaponName = "Unarmed";
 
         Weapon currentWeapon = null;
 
@@ -26,8 +27,11 @@ namespace RPG.Combat
         void Start() {
             animator = GetComponent<Animator>();
 
-            if (defaultWeapon != null)
-                EquipWeapon(defaultWeapon);
+            Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+            
+
+            if (weapon != null)
+                EquipWeapon(weapon);
         }
 
         void Update()

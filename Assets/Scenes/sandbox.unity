@@ -1109,6 +1109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 8694131648779865749, guid: 471b38423373d7a4491cf39647455b49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 471b38423373d7a4491cf39647455b49, type: 3}
 --- !u!4 &405022603 stripped
@@ -5544,6 +5548,10 @@ PrefabInstance:
       propertyPath: defaultWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 74c53a5270394be49be340a602f6871c, type: 2}
+    - target: {fileID: 2128111448733414775, guid: b2d0f64efa57b9e41ad4714f5e1aff87, type: 3}
+      propertyPath: defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 6353825845548391491, guid: b2d0f64efa57b9e41ad4714f5e1aff87, type: 3}
       propertyPath: m_RootOrder
       value: 0
