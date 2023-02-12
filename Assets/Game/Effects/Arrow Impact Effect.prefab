@@ -81,15 +81,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2302457091092795123, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.42052007
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 2302457091092795123, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.42052007
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 2302457091092795123, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.42052007
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 2302457091092795123, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
       propertyPath: m_Name
-      value: Generic Impact Effect
+      value: Arrow Impact Effect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
