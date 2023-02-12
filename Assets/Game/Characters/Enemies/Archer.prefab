@@ -67,5 +67,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 8115976439290147838, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
+      propertyPath: characterClass
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
+--- !u!1 &1401506358731096857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4655702894701637597, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
+  m_PrefabInstance: {fileID: 6048131466320981188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7503848539730058190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401506358731096857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98e18f18cd3edd48997bf6985dc1c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  characterClass: 3
