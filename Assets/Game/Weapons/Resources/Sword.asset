@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7ababcaefb83a4f84afd6102f3cdde, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  animatorOverride: {fileID: 22100000, guid: 71c6bf0d665d7a54098546e6d988670d, type: 2}
   equippedPrefab: {fileID: 727444318381319726, guid: 0d8602ce8489e3844ac86d0f1931a70c, type: 3}
   weaponRange: 2
   weaponDamage: 10
   isRightHanded: 1
-  animatorOverride: {fileID: 22100000, guid: 71c6bf0d665d7a54098546e6d988670d, type: 2}
+  projectile: {fileID: 0}

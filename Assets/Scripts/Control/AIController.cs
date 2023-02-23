@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using System;
+using RPG.Attributes;
 
 namespace RPG.Control
 {
@@ -70,6 +70,8 @@ namespace RPG.Control
 
         void AttackBehavior() {
             timeSinceLastSawPlayer = 0;
+            // Debug.Log("attack behavior... fighter cache = " + fighter);
+            // Debug.Log("attack behavior... player = " + player);
             fighter.Hit(player);
         }
 

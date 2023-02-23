@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
 using RPG.Saving;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -26,12 +26,11 @@ namespace RPG.Combat
         void Start() {
             animator = GetComponent<Animator>();
 
-            // if (defaultWeapon != null)
-            //     EquipWeapon(defaultWeapon);
-
-            if (defaultWeapon == null)
+            if (defaultWeapon != null)
                 EquipWeapon(defaultWeapon);
 
+            // if (defaultWeapon == null)
+            //     EquipWeapon(defaultWeapon);
         }
 
         void Update()
@@ -51,7 +50,7 @@ namespace RPG.Combat
                 return;
 
             if (!GetIsInRange()) 
-                GetComponent<Mover>().MoveTo(target.transform.position, 1f);                
+                GetComponent<Mover>().MoveTo(target.transform.position, 1f);
 
             else
             {
@@ -86,10 +85,11 @@ namespace RPG.Combat
 
         #region Attacking: Toggle Animator triggers.
 
+
         void TriggerAttack()
         {
             animator.ResetTrigger("stopAttack");
-            animator.SetTrigger("attack");
+            animator.SetTrigger("attack");            
         }
         
         void StopAttack()
@@ -99,7 +99,7 @@ namespace RPG.Combat
         }
 
         public void Cancel()
-        {            
+        {
             StopAttack();
             target = null;
             GetComponent<Mover>().Cancel();
@@ -111,33 +111,39 @@ namespace RPG.Combat
 
         // Played via Animation event.
         public void Hit(GameObject combatTarget) {
+            if (combatTarget == null)
+                return;
+
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
 
 
+        // Sword and Unarmed weapons aren't calling this... 
         // Played via Animation event.
         public void Hit()
         {
-            // target = GetComponent<Health>();
-            // target = combatTarget.GetComponent<Health>();
-
             if (target == null)
                 return;
-            
 
             if (currentWeapon.HasProjectile())
                 currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+
             else
-                target.TakeDamage(currentWeapon.GetDamage());
+                target.TakeDamage(currentWeapon.GetDamage());            
         }
 
         void Shoot() => 
             Hit();
 
+        
+        public bool GetIsInRange()
+        {
+            if (target == null)
+                return false;
 
-        public bool GetIsInRange() =>
-            Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+        }
 
 
         public object CaptureState()

@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;
+using RPG.Core;
+using RPG.Stats;
 
-
-namespace RPG.Core 
+namespace RPG.Attributes 
 {
     public class Health : MonoBehaviour, ISaveable
     {
@@ -16,6 +17,9 @@ namespace RPG.Core
 
         void Awake() =>
             collider = GetComponent<Collider>();
+
+        void Start() =>
+            healthPoints = GetComponent<BaseStats>().GetHealth();
 
 
         public void TakeDamage(float damage = 0) {
