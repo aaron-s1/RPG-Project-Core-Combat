@@ -18,8 +18,10 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start() =>
+        void Start() {
+            Debug.Log("health");
             healthPoints = GetComponent<BaseStats>().GetHealth();
+        }
 
 
         public void TakeDamage(float damage = 0) {
@@ -28,6 +30,14 @@ namespace RPG.Attributes
             if (healthPoints == 0)
                 Die();            
         }
+
+
+        public float GetPercentage()
+        {
+            return 100 * (healthPoints / GetComponent<BaseStats>().GetHealth());
+
+        }
+
 
 
         void Die()
