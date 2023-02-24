@@ -10,7 +10,6 @@ namespace RPG.Stats
 
         public float GetHealth(CharacterClass characterClass, int level)
         {
-            Debug.Log("progression");
             foreach (ProgressionCharacterClass progressionClass in characterClasses)
             {
                 if (progressionClass.characterClass == characterClass)

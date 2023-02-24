@@ -40,10 +40,15 @@ namespace RPG.Combat
             MoveToAttackTarget();
         }
 
+
         public void EquipWeapon(Weapon weapon) {
             currentWeapon = weapon;
             weapon.Spawn(rightHandTransform, leftHandTransform, animator);
         }
+
+
+        public Health GetTarget() => target;
+
 
         void MoveToAttackTarget()
         {

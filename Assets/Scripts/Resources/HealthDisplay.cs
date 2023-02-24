@@ -3,7 +3,8 @@ using RPG.Attributes;
 using UnityEngine.UI;
 using System;
 
-namespace RPG.Resources 
+
+namespace RPG.Attributes 
 {
     public class HealthDisplay : MonoBehaviour
     {
