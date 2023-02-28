@@ -1,8 +1,10 @@
+// using System.Runtime.Intrinsics.Arm.Arm64;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
+using RPG.Resources;
 
 namespace RPG.Attributes 
 {
@@ -22,11 +24,14 @@ namespace RPG.Attributes
             healthPoints = GetComponent<BaseStats>().GetHealth();
 
 
-        public void TakeDamage(float damage = 0) {
+        public void TakeDamage(GameObject instigator, float damage = 0) {
             healthPoints = Mathf.Max(healthPoints -= damage, 0);
             
             if (healthPoints == 0)
-                Die();            
+            {
+                Die();
+                AwardExperience(instigator);
+            }
         }
 
 
@@ -52,6 +57,17 @@ namespace RPG.Attributes
 
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             }
+        }
+
+
+        public void AwardExperience(GameObject instigator)
+        {
+            Experience experience = instigator.GetComponent<Experience>();
+
+            if (experience == null)
+                return;
+
+            experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
         }
 
 

@@ -24,12 +24,12 @@ MonoBehaviour:
     - 500
   - characterClass: 2
     health:
-    - 40
+    - 15
   - characterClass: 3
     health:
-    - 40
+    - 15
   - characterClass: 4
     health:
-    - 40
+    - 15
   - characterClass: 4
     health: []

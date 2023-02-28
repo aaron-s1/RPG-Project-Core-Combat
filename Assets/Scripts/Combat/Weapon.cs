@@ -18,6 +18,7 @@ namespace RPG.Combat
 
         const string weaponName = "Weapon";
 
+
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
             DestroyOldWeapon(rightHand, leftHand);
@@ -32,6 +33,7 @@ namespace RPG.Combat
             HandleAnimatorOverrides(animator);
         }
 
+
         void HandleAnimatorOverrides(Animator animator)
         {
             var overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
@@ -42,6 +44,7 @@ namespace RPG.Combat
             else if (overrideController)
                     animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
         }
+
 
         void DestroyOldWeapon(Transform rightHand, Transform leftHand)
         {
@@ -57,6 +60,7 @@ namespace RPG.Combat
             Destroy(oldWeapon.gameObject);
         }
 
+
         Transform GetHandTransform(Transform rightHand, Transform leftHand)
         {
             if (isRightHanded)
@@ -65,24 +69,19 @@ namespace RPG.Combat
                 return leftHand;
         }
 
+
         public bool HasProjectile() =>
             projectile != null;
 
-        // public bool HasProjectile() {
-        //     if (projectile != null)
-        //         return true;
-        //     else return false;
-        // }
-            
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator)
         {
             Projectile projectileInstance = Instantiate(projectile,
                                             GetHandTransform(rightHand, leftHand).position, 
                                             Quaternion.identity);
             
             // Debug.Log(target);
-            projectileInstance.SetTarget(target, weaponDamage);
+            projectileInstance.SetTarget(target, instigator, weaponDamage);
         }
 
 
