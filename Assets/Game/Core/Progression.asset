@@ -15,13 +15,38 @@ MonoBehaviour:
   characterClasses:
   - characterClass: 0
     stats:
-      stat: 
+    - stat: 0
+      levels: []
+    - stat: 0
       levels: []
   - characterClass: 1
     stats:
-      stat: 
+    - stat: 0
       levels: []
-  - characterClass: 3
+    - stat: 1
+      levels:
+      - 100
+      - 200
+      - 300
+      - 400
+      - 500
+  - characterClass: 2
     stats:
-      stat: 
+    - stat: 1
       levels: []
+    - stat: 1
+      levels:
+      - 20
+    - stat: 2
+      levels:
+      - 10
+  - characterClass: 4
+    stats:
+    - stat: 1
+      levels: []
+    - stat: 1
+      levels:
+      - 25
+    - stat: 2
+      levels:
+      - 20

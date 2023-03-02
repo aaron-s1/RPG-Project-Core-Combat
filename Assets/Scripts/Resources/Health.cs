@@ -21,7 +21,7 @@ namespace RPG.Attributes
             collider = GetComponent<Collider>();
 
         void Start() =>
-            healthPoints = GetComponent<BaseStats>().GetHealth();
+            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
 
 
         public void TakeDamage(GameObject instigator, float damage = 0) {
@@ -37,7 +37,7 @@ namespace RPG.Attributes
 
         public float GetPercentage()
         {
-            return 100 * (healthPoints / GetComponent<BaseStats>().GetHealth());
+            return 100 * (healthPoints / GetComponent<BaseStats>().GetStat(Stat.Health));
         }
 
 
@@ -67,7 +67,7 @@ namespace RPG.Attributes
             if (experience == null)
                 return;
 
-            experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+            experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }
 
 
