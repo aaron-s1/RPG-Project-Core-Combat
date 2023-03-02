@@ -3833,7 +3833,7 @@ PrefabInstance:
     - target: {fileID: 376510141305652965, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 7b1182fe49166da42aa9714c5c837697, type: 2}
+      objectReference: {fileID: 11400000, guid: bebbf3dcacd38c547851114a3e7d1769, type: 2}
     - target: {fileID: 2479021978444049311, guid: 09d26fb9a31df764eab31930994387e3, type: 3}
       propertyPath: patrolPath
       value: 
