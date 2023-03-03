@@ -4,13 +4,14 @@ using UnityEngine.AI;
 using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
-using RPG.Resources;
+// using RPG.Resources;
 
 namespace RPG.Attributes 
 {
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float healthPoints = 100f;
+
 
         Collider collider;
 

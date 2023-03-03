@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 using System;
 
 namespace RPG.Stats
@@ -10,15 +9,13 @@ namespace RPG.Stats
     {
         [SerializeField] ProgressionCharacterClass[] characterClasses = null;
 
+        Dictionary<CharacterClass, Dictionary<Stat, int[]>> lookupTable = null;
 
-        Dictionary<CharacterClass, Dictionary<Stat, float[]>> lookupTable = null;
-
-
-        public float GetStat(Stat stat, CharacterClass characterClass, int level)
+        public int GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildLookup();
 
-            float[] levels = lookupTable[characterClass][stat];
+            int[] levels = lookupTable[characterClass][stat];
 
             if (levels.Length < level)
                 return 0;
@@ -26,27 +23,31 @@ namespace RPG.Stats
             return levels[level - 1];
         }
 
+        public int GetLevels(Stat stat, CharacterClass characterClass)
+        {
+            BuildLookup();
+
+            int[] levels = lookupTable[characterClass][stat];
+            return levels.Length;
+        }
+
         void BuildLookup()
         {
-            if (lookupTable != null)
-                return;
-            
-            lookupTable = new Dictionary<CharacterClass, Dictionary<Stat, float[]>>();
+            if (lookupTable != null) return;
 
+            lookupTable = new Dictionary<CharacterClass, Dictionary<Stat, int[]>>();
 
             foreach (ProgressionCharacterClass progressionClass in characterClasses)
             {
-                var statLookupTable = new Dictionary<Stat, float[]>();
+                var statLookupTable = new Dictionary<Stat, int[]>();
 
                 foreach (ProgressionStat progressionStat in progressionClass.stats)
-                {
                     statLookupTable[progressionStat.stat] = progressionStat.levels;
-                }
 
                 lookupTable[progressionClass.characterClass] = statLookupTable;
             }
         }
-        
+
 
         [System.Serializable]
         class ProgressionCharacterClass
@@ -59,7 +60,7 @@ namespace RPG.Stats
         class ProgressionStat
         {
             public Stat stat;
-            public float[] levels;
+            public int[] levels;
         }
     }
 }

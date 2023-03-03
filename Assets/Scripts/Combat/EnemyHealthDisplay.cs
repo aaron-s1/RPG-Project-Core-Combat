@@ -13,7 +13,7 @@ namespace RPG.Combat
 
         void Awake() {
             fighter = GameObject.FindWithTag("Player").GetComponent<Fighter>(); 
-            text = GetComponent<Text>();           
+            text = GetComponent<Text>();
         }
 
 
