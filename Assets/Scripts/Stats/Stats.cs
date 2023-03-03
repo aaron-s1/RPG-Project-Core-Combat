@@ -2,7 +2,7 @@ namespace RPG.Stats
 {
     public enum Stat
     {
-        No,
+        No, 
         Health,
         ExperienceReward
     }
