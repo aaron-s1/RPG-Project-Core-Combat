@@ -10,7 +10,8 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        [SerializeField] float healthPoints = 100f;
+        // float healthPoints = 100f;
+        float healthPoints = -1f;
 
 
         Collider collider;
@@ -21,8 +22,11 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start() =>
-            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+        void Start() 
+        {
+            if (healthPoints < 0)
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+        }
 
 
         public void TakeDamage(GameObject instigator, float damage = 0) {
