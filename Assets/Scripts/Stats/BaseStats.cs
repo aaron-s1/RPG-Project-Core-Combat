@@ -12,12 +12,34 @@ namespace RPG.Stats
 
         [SerializeField] Progression progression = null;
 
+        int currentLevel = 0;
+
+        void Start() {
+            currentLevel = CalculateLevel();
+        }
+
+        void Update() {
+            int newLevel = CalculateLevel();
+
+            if (newLevel > currentLevel)
+            {
+                currentLevel = newLevel;
+                print("leveled up");
+            }
+        }
+
 
         public int GetStat(Stat stat) =>
             progression.GetStat(stat, characterClass, GetLevel());
 
 
         public int GetLevel()
+        {
+            return currentLevel;
+        }
+
+
+        public int CalculateLevel()
         {
             Experience experience = GetComponent<Experience>();
             if (experience == null)
