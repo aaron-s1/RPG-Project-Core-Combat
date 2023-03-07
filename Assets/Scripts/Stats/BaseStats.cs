@@ -16,25 +16,29 @@ namespace RPG.Stats
 
         void Start() {
             currentLevel = CalculateLevel();
+
+            Experience experience = GetComponent<Experience>();            
+            if (experience != null)
+                experience.onExperienceGained += UpdateLevel;
         }
 
-        void Update() {
+        void UpdateLevel() {
             int newLevel = CalculateLevel();
 
             if (newLevel > currentLevel)
-            {
                 currentLevel = newLevel;
-                print("leveled up");
-            }
         }
 
 
-        public int GetStat(Stat stat) =>
+        public float GetStat(Stat stat) =>
             progression.GetStat(stat, characterClass, GetLevel());
 
 
         public int GetLevel()
         {
+            if (currentLevel < 1)
+                currentLevel = CalculateLevel();
+
             return currentLevel;
         }
 
@@ -43,7 +47,7 @@ namespace RPG.Stats
         {
             Experience experience = GetComponent<Experience>();
             if (experience == null)
-                return startingLevel;
+                return startingLevel;                
 
             float currentXP = experience.GetPoints();
 
@@ -57,6 +61,9 @@ namespace RPG.Stats
                 if (XPToLevelUp > currentXP)
                     return level;
             }
+
+            Debug.Log("CalculateLevel()");
+            Debug.Log("CalculateLevel(), new level = " + penultimateLevel + 1);
 
             return penultimateLevel + 1;
         }

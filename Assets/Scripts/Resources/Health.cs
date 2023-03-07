@@ -24,8 +24,12 @@ namespace RPG.Attributes
 
         void Start() 
         {
-            if (healthPoints < 0)
+            // \/ THIS IF CHECK IS THE PROBLEM \/
+            // if (healthPoints < 0)
+            // {
                 healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+                Debug.Log("GetStat called from Health");
+            // }
         }
 
 
@@ -42,9 +46,21 @@ namespace RPG.Attributes
 
         public float GetPercentage()
         {
+            // var health = GetComponent<BaseStats>().GetStat(Stat.Health);
+            // return (100 * healthPoints) / health;
+            // return 
+            // return healthPoints;
             return 100 * (healthPoints / GetComponent<BaseStats>().GetStat(Stat.Health));
         }
 
+
+        public string GetHealthPercentageAsText()
+        {
+            var health = GetComponent<BaseStats>().GetStat(Stat.Health);            
+            var percent = 100 * (healthPoints / health);
+
+            return percent.ToString(); // + "%";
+        }
 
 
         void Die()

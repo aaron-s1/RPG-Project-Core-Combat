@@ -7,7 +7,7 @@ namespace RPG.Stats
     [CreateAssetMenu(fileName = "Progression", menuName = "Stats/ New Progression", order = 0)]
     public class Progression : ScriptableObject
     {
-        [SerializeField] ProgressionCharacterClass[] characterClasses = null;
+        [NonReorderable] [SerializeField] ProgressionCharacterClass[] characterClasses = null;
 
         Dictionary<CharacterClass, Dictionary<Stat, int[]>> lookupTable = null;
 
@@ -15,12 +15,23 @@ namespace RPG.Stats
         {
             BuildLookup();
 
+            // if (stat == Stat.exp)
+
             int[] levels = lookupTable[characterClass][stat];
 
             if (levels.Length < level)
+            {
+                Debug.Log("failed level check");
                 return 0;
+            }
 
+            // Debug.Log("hit level check");
+            // Debug.Log("level = " + levels[level - 1]);
+            // Debug.Log(level);
             return levels[level - 1];
+            
+            // [level] without adjustment makes Health work.
+            // 
         }
 
         public int GetLevels(Stat stat, CharacterClass characterClass)
@@ -42,7 +53,9 @@ namespace RPG.Stats
                 var statLookupTable = new Dictionary<Stat, int[]>();
 
                 foreach (ProgressionStat progressionStat in progressionClass.stats)
+                {
                     statLookupTable[progressionStat.stat] = progressionStat.levels;
+                }
 
                 lookupTable[progressionClass.characterClass] = statLookupTable;
             }
@@ -53,14 +66,14 @@ namespace RPG.Stats
         class ProgressionCharacterClass
         {
             public CharacterClass characterClass;
-            public ProgressionStat[] stats;
+            [NonReorderable] public ProgressionStat[] stats;
         }
 
         [System.Serializable]
         class ProgressionStat
         {
             public Stat stat;
-            public int[] levels;
+            [NonReorderable] public int[] levels;
         }
     }
 }
