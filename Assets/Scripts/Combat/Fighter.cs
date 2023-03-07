@@ -154,6 +154,9 @@ namespace RPG.Combat
 
         public object CaptureState()
         {
+            // if (currentWeapon.name == null)
+            //     return null;
+
             return currentWeapon.name;
         }
 

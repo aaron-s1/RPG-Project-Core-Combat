@@ -21,7 +21,7 @@ namespace RPG.Combat
         {
             if (fighter.GetTarget() == null)
             {
-                text.text = "N/Aaaa";
+                text.text = "N/A";
                 return;
             }
 

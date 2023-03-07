@@ -22,15 +22,8 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start() 
-        {
-            // \/ THIS IF CHECK IS THE PROBLEM \/
-            // if (healthPoints < 0)
-            // {
-                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
-                Debug.Log("GetStat called from Health");
-            // }
-        }
+        void Start() =>
+            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
 
 
         public void TakeDamage(GameObject instigator, float damage = 0) {

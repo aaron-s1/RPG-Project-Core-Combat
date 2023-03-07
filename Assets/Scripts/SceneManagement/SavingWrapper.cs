@@ -12,15 +12,18 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeInTime = 0.2f;
 
 
+        // void Awake() =>
+        //     StartCoroutine(LoadLastScene());
+
         // \/ Disabled so screen doesn't flash every time game is started.
-        // IEnumerator Start()
-        // {
-        //     Fader fader = FindObjectOfType<Fader>();
+        IEnumerator LoadLastScene()
+        {
+            Fader fader = FindObjectOfType<Fader>();
             
-        //     fader.FadeOutImmediate();
-        //                 // yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);   // Broken.
-        //     yield return fader.FadeIn(fadeInTime);
-        // }
+            fader.FadeOutImmediate();
+            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);   // Broken.
+            yield return fader.FadeIn(fadeInTime);
+        }
 
         void Update()
         {

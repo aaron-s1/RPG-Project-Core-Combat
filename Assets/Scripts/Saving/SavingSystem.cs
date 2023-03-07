@@ -11,17 +11,33 @@ namespace RPG.Saving
 {
     public class SavingSystem : MonoBehaviour
     {
+        // public IEnumerator LoadLastScene(string saveFile)
+        // {
+        //     Dictionary<string, object> state = LoadFile(saveFile);
+        //     int buildIndex = SceneManager.GetActiveScene().buildIndex;
+
+        //     if (state.ContainsKey("lastSceneBuildIndex"))
+        //         buildIndex = (int)state["lastSceneBuildIndex"];
+
+        //     yield return SceneManager.LoadSceneAsync(buildIndex);
+        //     RestoreState(state);
+        // }
+
         public IEnumerator LoadLastScene(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
-            int buildIndex = SceneManager.GetActiveScene().buildIndex;
-
             if (state.ContainsKey("lastSceneBuildIndex"))
-                buildIndex = (int)state["lastSceneBuildIndex"];
+            {
+                int buildIndex = (int)state["lastSceneBuildIndex"];
+                if (buildIndex != SceneManager.GetActiveScene().buildIndex)
+                {
+                    yield return SceneManager.LoadSceneAsync(buildIndex);
+                }
+            }
 
-            yield return SceneManager.LoadSceneAsync(buildIndex);
+
             RestoreState(state);
-        }
+        }        
 
         public void Save(string saveFile)
         {
@@ -52,6 +68,7 @@ namespace RPG.Saving
             }
         }
 
+
         void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile);
@@ -63,25 +80,27 @@ namespace RPG.Saving
             }
         }
 
+
         void CaptureState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
-            {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
-            }
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
         }
+
 
         void RestoreState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 string id = saveable.GetUniqueIdentifier();
+
                 if (state.ContainsKey(id))
                     saveable.RestoreState(state[id]);
             }
         }
+
 
         string GetPathFromSaveFile(string saveFile) =>
             Path.Combine(Application.persistentDataPath, saveFile + ".sav");
