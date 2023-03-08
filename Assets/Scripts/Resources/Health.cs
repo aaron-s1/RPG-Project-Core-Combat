@@ -25,7 +25,8 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start() {
+        void Start()
+        {
             GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
 
             if (healthPoints < 0)
@@ -33,14 +34,27 @@ namespace RPG.Attributes
         }
 
 
-        public void TakeDamage(GameObject instigator, float damage = 0) {
-            healthPoints = Mathf.Max(healthPoints -= damage, 0);
+        public void TakeDamage(GameObject instigator, float damage = 0)
+        {
+            print(gameObject.name + " took damage: " + damage);
+
+            healthPoints = Mathf.Max(healthPoints - damage, 0);
             
             if (healthPoints == 0)
             {
                 Die();
                 AwardExperience(instigator);
             }
+        }
+
+        public float GetHealthPoints()
+        {
+            return healthPoints;
+        }
+
+        public float GetMaxHealthPoints()
+        {
+            return GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
 
@@ -82,7 +96,7 @@ namespace RPG.Attributes
 
 
         public void AwardExperience(GameObject instigator)
-        {
+        {            
             Experience experience = instigator.GetComponent<Experience>();
 
             if (experience == null)
@@ -94,9 +108,10 @@ namespace RPG.Attributes
 
         void RegenerateHealth()
         {
-            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            // float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenerationPercentage / 100);            
+            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);                                          
             regenHealthPoints *= regenerationPercentage / 100;
-            
+
             healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
         }
 
