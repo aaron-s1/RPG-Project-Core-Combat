@@ -1,16 +1,19 @@
+using System.Runtime.Serialization;
 // using System.Runtime.Intrinsics.Arm.Arm64;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;
 using RPG.Core;
 using RPG.Stats;
+using System;
 // using RPG.Resources;
 
 namespace RPG.Attributes 
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        // float healthPoints = 100f;
+        [SerializeField] float regenerationPercentage = 70;
+        
         float healthPoints = -1f;
 
 
@@ -22,8 +25,12 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start() =>
-            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+        void Start() {
+            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
+
+            if (healthPoints < 0)
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+        }
 
 
         public void TakeDamage(GameObject instigator, float damage = 0) {
@@ -82,6 +89,15 @@ namespace RPG.Attributes
                 return;
 
             experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+        }
+
+
+        void RegenerateHealth()
+        {
+            float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            regenHealthPoints *= regenerationPercentage / 100;
+            
+            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
         }
 
 
