@@ -96,7 +96,8 @@ namespace RPG.Attributes
 
 
         public void AwardExperience(GameObject instigator)
-        {            
+        {
+            
             Experience experience = instigator.GetComponent<Experience>();
 
             if (experience == null)
