@@ -21,6 +21,10 @@ namespace RPG.Stats
             onExperienceGained();
         }
 
+        void Tomato(){
+            GainExperience(1f);
+        }
+
 
         public object CaptureState() => experiencePoints;
 

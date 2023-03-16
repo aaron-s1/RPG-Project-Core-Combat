@@ -105,14 +105,6 @@ namespace RPG.Combat
             animator.SetTrigger("stopAttack");
         }
 
-        public IEnumerable<float> GetAdditiveModifier(Stat stat)
-        {
-            if (stat == Stat.Damage)
-            {
-                yield return currentWeapon.GetDamage();
-            }
-        }
-
 
         public void Cancel()
         {
@@ -123,7 +115,19 @@ namespace RPG.Combat
 
         #endregion
 
-        
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+                yield return currentWeapon.GetDamage();
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (stat == Stat.Damage)
+                yield return currentWeapon.GetPercentageBonus();
+        }
+
 
         // Played via Animation event.
         public void Hit(GameObject combatTarget) {
@@ -145,17 +149,13 @@ namespace RPG.Combat
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
 
             if (currentWeapon.HasProjectile())
-            {
-                
                 currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
-            }
 
             else
-            {
                 // target.TakeDamage(gameObject, currentWeapon.GetDamage());
                 target.TakeDamage(gameObject, damage);
-            }
         }
+        
 
         void Shoot() => 
             Hit();
@@ -169,6 +169,8 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
         }
 
+
+        #region ~ SAVING ~
 
         public object CaptureState()
         {
@@ -186,5 +188,7 @@ namespace RPG.Combat
         }
 
 
+
+        #endregion
     }
 }

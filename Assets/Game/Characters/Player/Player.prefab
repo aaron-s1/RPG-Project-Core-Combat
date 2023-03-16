@@ -144,7 +144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3077273991353042234, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: characterClass
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3077273991353042234, guid: fe628672122d6324e951de6ed19234da, type: 3}
+      propertyPath: shouldUseModifiers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3077273991353042234, guid: fe628672122d6324e951de6ed19234da, type: 3}
       propertyPath: levelUpParticleEffect
@@ -225,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7259e88e40cbca4996e6bda10309228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regenerationPercentage: 70
 --- !u!114 &3554996323649290592
 MonoBehaviour:
   m_ObjectHideFlags: 0
