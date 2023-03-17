@@ -13,15 +13,14 @@ namespace RPG.SceneManagement
 
 
         // void Awake() =>
-        //     StartCoroutine(LoadLastScene());
+            // StartCoroutine(LoadLastScene());
 
         // \/ Disabled so screen doesn't flash every time game is started.
         IEnumerator LoadLastScene()
         {
-            Fader fader = FindObjectOfType<Fader>();
-            
-            fader.FadeOutImmediate();
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);   // Broken.
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();
             yield return fader.FadeIn(fadeInTime);
         }
 

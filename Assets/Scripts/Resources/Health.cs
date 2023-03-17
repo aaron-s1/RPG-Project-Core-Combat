@@ -25,13 +25,18 @@ namespace RPG.Attributes
         void Awake() =>
             collider = GetComponent<Collider>();
 
-        void Start()
-        {
-            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
 
+        void Start()
+        {            
             if (healthPoints < 0)
                 healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
+
+        void OnEnable() =>
+            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
+
+        void OnDisable() =>
+            GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
 
 
         public void TakeDamage(GameObject instigator, float damage = 0)

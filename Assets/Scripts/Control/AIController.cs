@@ -22,9 +22,9 @@ namespace RPG.Control
         [SerializeField] float patrolSpeedFraction = 0.2f;
 
         GameObject player;
+        Fighter fighter;
         Health health;
         Mover mover;
-        Fighter fighter;
 
         Vector3 guardPosition;
 
@@ -33,14 +33,15 @@ namespace RPG.Control
         int currentWaypointIndex = 0;
 
 
-        void Start() {
+        void Awake() {
             player = GameObject.FindWithTag("Player");
-            health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
-            mover = GetComponent<Mover>();
-
-            guardPosition = transform.position;
+            health = GetComponent<Health>();
+            mover = GetComponent<Mover>();            
         }
+
+        void Start() =>
+            guardPosition = transform.position;
 
 
         void Update()
