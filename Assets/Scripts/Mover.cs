@@ -12,20 +12,17 @@ namespace RPG.Movement
         [SerializeField] Transform target;
         [SerializeField] float maxSpeed = 6f;
         
-        
-        
         NavMeshAgent navMeshAgent;
         Health health;
         Animator playerAnim;
 
         Ray lastRay;
 
-        void Start() {
+        void Awake() {
             navMeshAgent = GetComponent<NavMeshAgent>();
             playerAnim = GetComponent<Animator>();
             health = GetComponent<Health>();
         }
-
 
         void Update()
         {
@@ -36,7 +33,7 @@ namespace RPG.Movement
         }
 
         
-        // Moves but first stops attacking.
+        // Moves, but first stops attacking.
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
             GetComponent<ActionScheduler>().StartAction(this);
