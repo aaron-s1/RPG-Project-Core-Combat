@@ -14,9 +14,7 @@ namespace RPG.Combat
         void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player")
-            {
                 Pickup(other.GetComponent<Fighter>());
-            }
         }
 
         private void Pickup(Fighter fighter)
@@ -48,5 +46,8 @@ namespace RPG.Combat
             }
             return true;
         }
+
+        public CursorType GetCursorType() =>
+            CursorType.Pickup;
     }
 }
