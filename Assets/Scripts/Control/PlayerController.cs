@@ -41,7 +41,8 @@ namespace RPG.Control
                 return;
             }
 
-            if (InteractWithCombat())
+
+            if (InteractWithComponent())
                 return;
 
             if (InteractWithMovement())
@@ -50,34 +51,33 @@ namespace RPG.Control
             SetCursor(CursorType.None);
         }
 
-        bool InteractWithUI()
+
+        bool InteractWithComponent()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+
+            foreach (RaycastHit hit in hits)
             {
-                SetCursor(CursorType.UI);
-                return true;
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (IRaycastable raycastable in raycastables)
+                {
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetCursor(CursorType.Combat);
+                        return true;
+                    }
+                }   
             }
 
             return false;
         }
 
-        bool InteractWithCombat() {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
 
-            foreach (RaycastHit hit in hits)
+        bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-
-                if (target == null)
-                    continue;
-
-                if (!GetComponent<Fighter>().CanAttack(target.gameObject))
-                    continue;
-
-                if (Input.GetMouseButton(0))
-                    GetComponent<Fighter>().Hit(target.gameObject);
-
-                SetCursor(CursorType.Combat);
+                SetCursor(CursorType.UI);
                 return true;
             }
 
@@ -101,6 +101,7 @@ namespace RPG.Control
 
             return false;
         }
+        
 
 
         void SetCursor(CursorType type)
