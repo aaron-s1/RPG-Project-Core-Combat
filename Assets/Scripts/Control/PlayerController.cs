@@ -4,6 +4,7 @@ using RPG.Movement;
 using RPG.Combat;
 using RPG.Attributes;
 using System;
+using UnityEngine.EventSystems;
 
 namespace RPG.Control
 {
@@ -13,7 +14,7 @@ namespace RPG.Control
 
         enum CursorType
         {
-            None, Movement, Combat
+            None, Movement, Combat, UI
         }
 
         [System.Serializable]
@@ -31,8 +32,14 @@ namespace RPG.Control
 
 
         void Update() {
-            if (health.IsDead())
+            if (InteractWithUI())
                 return;
+
+            if (health.IsDead())
+            {
+                SetCursor(CursorType.None);
+                return;
+            }
 
             if (InteractWithCombat())
                 return;
@@ -43,6 +50,16 @@ namespace RPG.Control
             SetCursor(CursorType.None);
         }
 
+        bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.UI);
+                return true;
+            }
+
+            return false;
+        }
 
         bool InteractWithCombat() {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
