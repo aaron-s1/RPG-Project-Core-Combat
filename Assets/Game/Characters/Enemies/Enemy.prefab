@@ -78,6 +78,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 5476331861340477784, guid: b5a6ca1cd320e4441a3b23877956eae4, type: 3}
+      propertyPath: healthComponent
+      value: 
+      objectReference: {fileID: 4897027212247093049}
     - target: {fileID: 8988098414854453425, guid: b5a6ca1cd320e4441a3b23877956eae4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -327,3 +331,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   maxSpeed: 6
+--- !u!114 &4897027212247093049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1864681268547516925, guid: fe628672122d6324e951de6ed19234da, type: 3}
+  m_PrefabInstance: {fileID: 6491114186829051588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655702894701637597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7259e88e40cbca4996e6bda10309228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
