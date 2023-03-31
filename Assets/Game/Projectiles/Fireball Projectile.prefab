@@ -4877,6 +4877,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 94924630519078421, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 963269446021508920, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: da0093ebe4323b846a8f67e40229df09, type: 3}
     - target: {fileID: 2025376491742281740, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4945,6 +4953,10 @@ PrefabInstance:
       propertyPath: destroyOnHit.Array.data[0]
       value: 
       objectReference: {fileID: 6633653119750075183}
+    - target: {fileID: 5803421777999915593, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c4a6d3173c94d04c9896a4afd752f69, type: 3}
     - target: {fileID: 5905398015179620649, guid: 20c5b031d5c4b3e4f977ac091008d710, type: 3}
       propertyPath: m_Size.x
       value: 0.5285135
