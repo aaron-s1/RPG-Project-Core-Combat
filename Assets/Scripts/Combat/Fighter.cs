@@ -146,12 +146,15 @@ namespace RPG.Combat
 
 
         // Played via Animation event.
+        // THIS IS WHAT SWORD CALLS?
         public void Hit(GameObject combatTarget) {
             if (combatTarget == null)
                 return;
 
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
+
+            currentWeapon.value.OnHit();
         }
 
 
@@ -173,6 +176,8 @@ namespace RPG.Combat
             else
                 // target.TakeDamage(gameObject, currentWeapon.GetDamage());
                 target.TakeDamage(gameObject, damage);
+                
+            currentWeapon.value.OnHit();
         }
         
 
