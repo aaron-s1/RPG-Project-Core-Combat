@@ -5505,11 +5505,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1401506358731096857, guid: b8b7dd127e242b9488bdc84ab400ff8e, type: 3}
       propertyPath: m_Name
-      value: Archer (3)
+      value: TEST ARCHER BY PLAYER
       objectReference: {fileID: 0}
     - target: {fileID: 1401506358731096857, guid: b8b7dd127e242b9488bdc84ab400ff8e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4864707611004050450, guid: b8b7dd127e242b9488bdc84ab400ff8e, type: 3}
       propertyPath: uniqueIdentifier
