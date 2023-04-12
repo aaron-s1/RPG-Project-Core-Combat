@@ -22,6 +22,7 @@ namespace RPG.Control
 
         [Range(0,1)]
         [SerializeField] float patrolSpeedFraction = 0.2f;
+        [SerializeField] float shoutDistance = 5f;
 
         GameObject player;
         Fighter fighter;
@@ -87,11 +88,23 @@ namespace RPG.Control
 
         void AttackBehavior() {
             timeSinceLastSawPlayer = 0;
-            // Debug.Log("attack behavior... fighter cache = " + fighter);
-            // Debug.Log("attack behavior... player = " + player);
             fighter.Hit(player);
+
+            AggrevateNearbyEnemies();
         }
 
+        void AggrevateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+
+            foreach (RaycastHit hit in hits)
+            {
+                AIController ai = hit.collider.GetComponent<AIController>();
+                
+                if (ai != null)
+                    ai.Aggrevate();
+            }
+        }
 
         void SuspicionBehavior() =>
             GetComponent<ActionScheduler>().CancelCurrentAction();
